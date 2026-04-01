@@ -253,7 +253,7 @@ def find_largest_figure(filename):
 
     return largest_fig_tuple
 
-filename = "input03.txt"
+filename = "input03.txt" # <- тут міняти назву input-а для трьох різних файлів
 result = find_largest_figure(filename)
 
 if result:
