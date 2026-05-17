@@ -22,6 +22,7 @@ class Figura:
     def volume(self):
         raise NotImplementedError
 
+
 class Triangle(Figura):
     def __init__(self, a, b, c):
         self.a = a
@@ -30,6 +31,7 @@ class Triangle(Figura):
 
     def dimention(self):
         return "2D"
+
     def perimetr(self):
         return (self.a + self.b + self.c)
 
@@ -39,8 +41,10 @@ class Triangle(Figura):
         if val_under_root <= 0:
             return 0
         return math.sqrt(val_under_root)
+
     def volume(self):
         return self.square()
+
 
 class Rectangle(Figura):
     def __init__(self, a, b):
@@ -49,12 +53,16 @@ class Rectangle(Figura):
 
     def dimention(self):
         return "2D"
+
     def perimetr(self):
         return 2 * (self.a + self.b)
+
     def square(self):
         return self.a * self.b
+
     def volume(self):
         return self.square()
+
 
 class Trapezoid(Figura):
     def __init__(self, a, b, c, d):
@@ -62,8 +70,10 @@ class Trapezoid(Figura):
         self.b = b
         self.c = c
         self.d = d
+
     def dimention(self):
         return "2D"
+
     def perimetr(self):
         return (self.a + self.b + self.c + self.d)
 
@@ -77,8 +87,10 @@ class Trapezoid(Figura):
             return 0
         h = (2 / diff) * math.sqrt(val_under_root)
         return ((self.a + self.b) / 2) * h
+
     def volume(self):
         return self.square()
+
 
 class Parallelogram(Figura):
     def __init__(self, a, b, h):
@@ -88,97 +100,163 @@ class Parallelogram(Figura):
 
     def dimention(self):
         return "2D"
+
     def perimetr(self):
-        return 2*(self.a + self.b)
+        return 2 * (self.a + self.b)
+
     def square(self):
         return self.a * self._h
+
     def volume(self):
         return self.square()
+
 
 class Circle(Figura):
     def __init__(self, radius):
         self.radius = radius
+
     def dimention(self):
         return "2D"
+
     def perimetr(self):
         return 2 * math.pi * self.radius
+
     def square(self):
         return math.pi * (self.radius ** 2)
+
     def volume(self):
         return self.square()
+
 
 class Sphere(Figura):
     def __init__(self, radius):
         self.radius = radius
+
     def dimention(self):
         return "3D"
+
+    def perimetr(self):
+        return None
+
+    def square(self):
+        return None
+
     def squareSurface(self):
         return 4 * math.pi * (self.radius ** 2)
+
     def volume(self):
-        return (4/3) * math.pi * (self.radius ** 3)
+        return (4 / 3) * math.pi * (self.radius ** 3)
+
 
 class TriangularPyramid(Triangle):
     def __init__(self, a, h):
-        super().__init__(a,a,a)
+        super().__init__(a, a, a)
         self._height = h
+
     def dimention(self):
         return "3D"
+
+    def perimetr(self):
+        return None
+
+    def square(self):
+        return None
+
     def height(self):
         return self._height
+
     def squareBase(self):
         return super().square()
+
     def squareSurface(self):
         r_in = self.a * math.sqrt(3) / 6
         l = math.sqrt(self._height ** 2 + r_in ** 2)
         return 3 * (0.5 * self.a * l)
+
     def volume(self):
-        return (1/3) * self.squareBase() * self._height
+        return (1 / 3) * self.squareBase() * self._height
+
 
 class QuadrangularPyramid(Rectangle):
     def __init__(self, a, b, h):
         super().__init__(a, b)
         self._height = h
+
     def dimention(self):
         return "3D"
+
+    def perimetr(self):
+        return None
+
+    def square(self):
+        return None
+
     def height(self):
         return self._height
+
     def squareBase(self):
         return super().square()
+
     def squareSurface(self):
         l1 = math.sqrt(self._height ** 2 + (self.b / 2) ** 2)
         l2 = math.sqrt(self._height ** 2 + (self.a / 2) ** 2)
         return 2 * (0.5 * self.a * l1) + 2 * (0.5 * self.b * l2)
+
     def volume(self):
-        return (1/3) * self.squareBase() * self._height
+        return (1 / 3) * self.squareBase() * self._height
+
 
 class RectangularParallelepiped(Rectangle):
     def __init__(self, a, b, c):
         super().__init__(a, b)
         self.c = c
+
     def dimention(self):
         return "3D"
+
+    def perimetr(self):
+        return None
+
+    def square(self):
+        return None
+
     def height(self):
         return self.c
+
     def squareBase(self):
         return super().square()
+
     def squareSurface(self):
         return 2 * (self.a * self.c + self.b * self.c)
+
     def volume(self):
         return self.a * self.b * self.c
+
 
 class Cone(Circle):
     def __init__(self, radius, h):
         super().__init__(radius)
         self._height = h
+
     def dimention(self):
         return "3D"
+
+    def perimetr(self):
+        return None
+
+    def square(self):
+        return None
+
     def height(self):
         return self._height
+
     def squareBase(self):
         return super().square()
+
     def squareSurface(self):
         l = math.sqrt(self.radius ** 2 + self._height ** 2)
         return math.pi * self.radius * l
+
     def volume(self):
         return (1 / 3) * self.squareBase() * self._height
 
@@ -187,21 +265,28 @@ class TriangularPrism(Triangle):
     def __init__(self, a, b, c, h):
         super().__init__(a, b, c)
         self._height = h
+
     def dimention(self):
-        return 3
+        return "3D"
+
     def perimetr(self):
         return None
+
     def square(self):
         return None
+
     def height(self):
         return self._height
+
     def squareBase(self):
         return super().square()
+
     def squareSurface(self):
         return super().perimetr() * self._height
 
     def volume(self):
         return self.squareBase() * self._height
+
 
 def find_largest_figure(filename):
     classes_map = {
@@ -253,11 +338,13 @@ def find_largest_figure(filename):
 
     return largest_fig_tuple
 
-filename = "input03.txt" # <- тут міняти назву input-а для трьох різних файлів
-result = find_largest_figure(filename)
 
-if result:
-    name, obj = result
-    print("РЕЗУЛЬТАТ:")
-    print(f"Найбільша міра у фігури: {name}")
-    print(f"Значення міри (площа/об'єм): {obj.volume():.2f}")
+if __name__ == "__main__":
+    filename = "input03.txt"  # <- тут міняти назву input-а для трьох різних файлів
+    result = find_largest_figure(filename)
+
+    if result:
+        name, obj = result
+        print("РЕЗУЛЬТАТ:")
+        print(f"Найбільша міра у фігури: {name}")
+        print(f"Значення міри (площа/об'єм): {obj.volume():.2f}")
